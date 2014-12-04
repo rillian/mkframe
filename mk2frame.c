@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
 
   // Blue frame.
   y4m *blue = newframe(width, height);
-  fillframe(blue, 218, 224, 32);
+  fillframe(blue, 96, 224, 32);
   writeframe(blue, out);
   freeframe(blue);
 
