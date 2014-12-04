@@ -87,13 +87,13 @@ int main(int argc, char *argv[]) {
 
   // Blue frame.
   y4m *blue = newframe(width, height);
-  fillframe(blue, 255, 255, 0);
+  fillframe(blue, 218, 224, 32);
   writeframe(blue, out);
   freeframe(blue);
 
   // Green frame.
   y4m *green = newframe(width, height);
-  fillframe(green, 255, 0, 0);
+  fillframe(green, 218, 32, 32);
   writeframe(green, out);
   freeframe(green);
 
