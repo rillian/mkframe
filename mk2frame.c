@@ -85,11 +85,11 @@ int main(int argc, char *argv[]) {
   // Header.
   fprintf(out, "YUV4MPEG2 W%d H%d F24:1 Ip A1:1\n", width, height);
 
-  // Black frame.
-  y4m *black = newframe(width, height);
-  fillframe(black, 0, 128, 128);
-  writeframe(black, out);
-  freeframe(black);
+  // Blue frame.
+  y4m *blue = newframe(width, height);
+  fillframe(blue, 255, 255, 0);
+  writeframe(blue, out);
+  freeframe(blue);
 
   // Green frame.
   y4m *green = newframe(width, height);
