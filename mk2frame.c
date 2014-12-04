@@ -70,6 +70,35 @@ void fillframe(y4m *frame, uint8_t y, uint8_t cr, uint8_t cb) {
   memset(frame->cb, cb, frame->c_stride * frame->c_height);
 }
 
+int writeframe(y4m *frame, FILE *out) {
+  fprintf(out, "FRAME\n");
+  return fwrite(frame->data, 1, frame->y_stride * frame->y_height * 3 / 2, out);
+
+}
+
 int main(int argc, char *argv[]) {
+  const char *filename = "2frame.y4m";
+  const int width = 360;
+  const int height = 180;
+
+  FILE *out = fopen(filename, "wb");
+  // Header.
+  fprintf(out, "YUV4MPEG2 W%d H%d F24:1 Ip A1:1\n", width, height);
+
+  // Black frame.
+  y4m *black = newframe(width, height);
+  fillframe(black, 0, 128, 128);
+  writeframe(black, out);
+  freeframe(black);
+
+  // Green frame.
+  y4m *green = newframe(width, height);
+  fillframe(green, 0, 128, 128);
+  writeframe(green, out);
+  freeframe(green);
+
+  fclose(out);
+  fprintf(stderr, "File written to %s.\n", filename);
+
   return 0;
 }
